@@ -19,7 +19,6 @@ export default function AppLayout() {
       centered: true,
       children: <Text size="sm">Bạn có chắc muốn đăng xuất không?</Text>,
       labels: { confirm: 'Đồng ý', cancel: 'Huỷ bỏ' },
-      confirmProps: { color: 'red' },
       onCancel: () => {},
       onConfirm: () => {
         localStorage.clear();
