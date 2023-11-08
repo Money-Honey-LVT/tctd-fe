@@ -1,5 +1,5 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
-import { IconAB2, IconBook2 } from '@tabler/icons-react';
+import { IconAB2, IconBook2, IconReportAnalytics } from '@tabler/icons-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTER from '../../config/router';
@@ -44,10 +44,17 @@ const MainLink = ({ icon, color, label, to, managerOnly }: MainLinkProps) => {
 
 const data = [
   {
-    icon: <IconBook2 size="1rem" />,
-    color: 'blue',
-    label: 'Tài Liệu Tiêu Chí',
-    to: ROUTER.NAV.REFERENCE.INDEX,
+    icon: <IconReportAnalytics size="1rem" />,
+    color: 'red',
+    label: 'Thống kê toàn trường',
+    to: ROUTER.NAV.STATISTICS.INDEX,
+    managerOnly: false,
+  },
+  {
+    icon: <IconReportAnalytics size="1rem" />,
+    color: 'yellow',
+    label: 'Xếp hạng các lớp',
+    to: ROUTER.NAV.RANKINGS.INDEX,
     managerOnly: false,
   },
   {
@@ -55,6 +62,13 @@ const data = [
     color: 'violet',
     label: 'Quản Lý Tiêu Chí',
     to: ROUTER.NAV.CRITERIAS.INDEX,
+    managerOnly: false,
+  },
+  {
+    icon: <IconBook2 size="1rem" />,
+    color: 'blue',
+    label: 'Tài Liệu Tiêu Chí',
+    to: ROUTER.NAV.REFERENCE.INDEX,
     managerOnly: false,
   },
 ];

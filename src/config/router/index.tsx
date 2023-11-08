@@ -7,6 +7,12 @@ const ROUTER = {
     SIGNUP: '/signup',
   },
   NAV: {
+    STATISTICS: {
+      INDEX: '/statistics',
+    },
+    RANKINGS: {
+      INDEX: '/rankings',
+    },
     REFERENCE: {
       INDEX: '/reference',
     },
