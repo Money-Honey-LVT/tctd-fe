@@ -18,7 +18,7 @@ function App() {
         <CookiesProvider>
           <MantineProvider theme={customTheme}>
             <ModalsProvider>
-              <Notifications position="top-right" />
+              <Notifications position="bottom-right" />
               <AppRoutes />
             </ModalsProvider>
           </MantineProvider>

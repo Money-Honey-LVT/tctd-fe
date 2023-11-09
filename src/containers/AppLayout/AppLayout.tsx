@@ -23,12 +23,8 @@ export default function AppLayout() {
         localStorage.clear();
         navigate(ROUTER.AUTH.LOGIN);
         notifications.show({
-          withCloseButton: true,
           title: 'Thông báo',
-          message: 'Bạn đã đăng xuất thành công!',
-          color: 'green',
-          icon: <IconCheck size={16} />,
-          autoClose: 1200,
+          message: 'Đăng xuất thành công!',
         });
       },
     });

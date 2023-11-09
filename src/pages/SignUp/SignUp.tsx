@@ -50,8 +50,6 @@ const SignUp = () => {
           message: response.errors[0],
           color: 'red',
           icon: <IconX />,
-          withCloseButton: true,
-          autoClose: 1200,
         });
         return;
       }
@@ -59,12 +57,7 @@ const SignUp = () => {
       setTimeout(() => {
         navigate(ROUTER.AUTH.LOGIN);
         notifications.show({
-          title: 'Thông báo',
           message: 'Tạo tài khoản mới thành công!',
-          color: 'green',
-          icon: <IconCheck />,
-          withCloseButton: true,
-          autoClose: 1200,
         });
 
         setIsLoading(false);
@@ -76,8 +69,6 @@ const SignUp = () => {
         message: JSON.stringify(e),
         color: 'red',
         icon: <IconX />,
-        withCloseButton: true,
-        autoClose: 1200,
       });
     }
   };

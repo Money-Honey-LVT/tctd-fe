@@ -15,7 +15,7 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconLock, IconUser, IconX } from '@tabler/icons-react';
+import { IconCheck, IconLock, IconUser, IconX } from '@tabler/icons-react';
 import bg from '../../assets/img/logo.jpg';
 import classes from './login.module.css';
 import ROUTER from '../../config/router';
@@ -51,8 +51,6 @@ const Login = () => {
           message: response.errors[0],
           color: 'red',
           icon: <IconX />,
-          withCloseButton: true,
-          autoClose: 2000,
         });
         return;
       }
@@ -60,13 +58,14 @@ const Login = () => {
       localStorage.setItem('token', response.data);
 
       navigate(ROUTER.HOME.INDEX);
+      notifications.show({
+        message: 'Đăng nhập thành công!',
+      });
     } catch (e) {
       notifications.show({
         message: 'Đã có lỗi xảy ra',
         color: 'red',
         icon: <IconX />,
-        withCloseButton: true,
-        autoClose: 2000,
       });
     } finally {
       setIsLoading(false);
