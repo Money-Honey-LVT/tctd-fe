@@ -5,13 +5,12 @@ import { IconCheck, IconDatabase, IconLogout } from '@tabler/icons-react';
 import { Suspense } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import ROUTER from '../../config/router';
-import { decodeToken } from '../../utils/helpers';
+import AuthRoutes from '../../pages/AuthRoutes';
 import MainLinks from '../MainLinks';
 import User from '../User';
 
 export default function AppLayout() {
   const navigate = useNavigate();
-  const decodedToken = decodeToken();
 
   const handleLogout = () => {
     modals.openConfirmModal({
@@ -66,9 +65,9 @@ export default function AppLayout() {
         }
       >
         <Suspense fallback={<LoadingOverlay visible />}>
-          {/* <AuthRoutes> */}
-          <Outlet />
-          {/* </AuthRoutes> */}
+          <AuthRoutes>
+            <Outlet />
+          </AuthRoutes>
         </Suspense>
       </AppShell>
     </>

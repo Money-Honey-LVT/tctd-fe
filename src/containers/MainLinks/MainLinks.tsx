@@ -3,7 +3,7 @@ import { IconAB2, IconBook2, IconReportAnalytics } from '@tabler/icons-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTER from '../../config/router';
-import { isManager } from '../../utils/helpers';
+// import { isManager } from '../../utils/helpers';
 
 interface MainLinkProps {
   icon: React.ReactNode;
@@ -60,21 +60,21 @@ const data = [
   {
     icon: <IconAB2 size="1rem" />,
     color: 'violet',
-    label: 'Quản Lý Tiêu Chí',
+    label: ' Quản lý tiêu chí',
     to: ROUTER.NAV.CRITERIAS.INDEX,
     managerOnly: false,
   },
   {
     icon: <IconBook2 size="1rem" />,
     color: 'blue',
-    label: 'Tài Liệu Tiêu Chí',
+    label: 'Tài liệu tiêu chí',
     to: ROUTER.NAV.REFERENCE.INDEX,
     managerOnly: false,
   },
 ];
 
 const MainLinks = () => {
-  if (!isManager()) {
+  if (false) {
     const filterData = data.filter((link) => !link.managerOnly);
     const links = filterData.map((link) => <MainLink {...link} key={link.label} />);
     return <div>{links}</div>;

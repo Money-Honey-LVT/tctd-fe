@@ -7,8 +7,9 @@ interface Props {
   children: ReactNode;
 }
 const AuthRoutes = ({ children }: Props) => {
-  const decodedToken = decodeToken();
-  return !(isObject(decodedToken) && 'id' in decodedToken) ? <Navigate to={ROUTER.AUTH.LOGIN} /> : <>{children}</>;
+  // const decodedToken = decodeToken();
+  const hasNoToken = !localStorage.getItem('token');
+  return hasNoToken ? <Navigate to={ROUTER.AUTH.LOGIN} /> : <>{children}</>;
 };
 
 export default AuthRoutes;

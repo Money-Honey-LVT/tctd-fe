@@ -15,12 +15,20 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconLock, IconUser } from '@tabler/icons-react';
+import { IconLock, IconUser, IconX } from '@tabler/icons-react';
 import bg from '../../assets/img/logo.jpg';
 import classes from './login.module.css';
 import ROUTER from '../../config/router';
+import { useState } from 'react';
+import { HEADERS, baseURL } from '../../config/constants/api';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { notifications } from '@mantine/notifications';
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
   const form = useForm({
     initialValues: {
       username: '',
@@ -28,13 +36,46 @@ const Login = () => {
     },
   });
 
-  const handleSubmit = (value: any) => {
-    console.log(value);
+  const handleSubmit = async (value: any) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${baseURL}/auth/login`, {
+        method: 'POST',
+        headers: HEADERS.header,
+        body: JSON.stringify(value),
+      }).then((res) => res.json());
+
+      if (response.hasErrors) {
+        notifications.show({
+          title: 'Đã có lỗi xảy ra',
+          message: response.errors[0],
+          color: 'red',
+          icon: <IconX />,
+          withCloseButton: true,
+          autoClose: 2000,
+        });
+        return;
+      }
+
+      localStorage.setItem('token', response.data);
+
+      navigate(ROUTER.HOME.INDEX);
+    } catch (e) {
+      notifications.show({
+        message: 'Đã có lỗi xảy ra',
+        color: 'red',
+        icon: <IconX />,
+        withCloseButton: true,
+        autoClose: 2000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleRememberPassword = (event: any) => {
-    localStorage.setItem('isRememberPassword', event.currentTarget.checked);
-  };
+  if (localStorage.getItem('token')) {
+    return <Navigate to={ROUTER.HOME.INDEX} />;
+  }
 
   return (
     <Grid style={{ height: '100vh' }} align="center" justify="center">
@@ -81,8 +122,7 @@ const Login = () => {
                     icon={<IconLock size={14} />}
                     {...form.getInputProps('password')}
                   />
-                  <Checkbox label="Nhớ mật khẩu" onChange={handleRememberPassword} />
-                  <Button variant="filled" fullWidth mt="sm" type="submit">
+                  <Button loading={isLoading} variant="filled" fullWidth mt="sm" type="submit">
                     Đăng nhập
                   </Button>
                 </Stack>

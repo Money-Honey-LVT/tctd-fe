@@ -14,23 +14,77 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconLock, IconUser } from '@tabler/icons-react';
+import { notifications } from '@mantine/notifications';
+import { IconAB, IconCheck, IconLock, IconUser, IconX } from '@tabler/icons-react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import bg from '../../assets/img/logo.jpg';
+import { HEADERS, baseURL } from '../../config/constants/api';
 import ROUTER from '../../config/router';
 import classes from './signup.module.css';
+import { useState } from 'react';
 
 const SignUp = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
   const form = useForm({
     initialValues: {
       username: '',
       password: '',
-      password_2: '',
+      fullName: '',
     },
   });
 
-  const handleSubmit = (value: any) => {
-    console.log(value);
+  const handleSubmit = async (value: any) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${baseURL}/auth/register`, {
+        method: 'POST',
+        headers: HEADERS.header,
+        body: JSON.stringify({ ...value, role: 'ROLE_ADMIN' }),
+      }).then((res) => res.json());
+
+      if (response.hasErrors) {
+        notifications.show({
+          title: 'Đã có lỗi xảy ra',
+          message: response.errors[0],
+          color: 'red',
+          icon: <IconX />,
+          withCloseButton: true,
+          autoClose: 1200,
+        });
+        return;
+      }
+
+      setTimeout(() => {
+        navigate(ROUTER.AUTH.LOGIN);
+        notifications.show({
+          title: 'Thông báo',
+          message: 'Tạo tài khoản mới thành công!',
+          color: 'green',
+          icon: <IconCheck />,
+          withCloseButton: true,
+          autoClose: 1200,
+        });
+
+        setIsLoading(false);
+      }, 2000);
+    } catch (e) {
+      setIsLoading(false);
+      notifications.show({
+        title: 'Đã có lỗi xảy ra',
+        message: JSON.stringify(e),
+        color: 'red',
+        icon: <IconX />,
+        withCloseButton: true,
+        autoClose: 1200,
+      });
+    }
   };
+
+  if (localStorage.getItem('token')) {
+    return <Navigate to={ROUTER.HOME.INDEX} />;
+  }
 
   return (
     <Grid style={{ height: '100vh' }} align="center" justify="center">
@@ -64,29 +118,28 @@ const SignUp = () => {
                 <Stack>
                   <TextInput
                     withAsterisk
-                    label="Tên đăng nhập"
+                    label="Họ và tên"
+                    placeholder="Nhập họ tên người dùng"
+                    icon={<IconAB size={14} />}
+                    {...form.getInputProps('fullName')}
+                  />
+
+                  <TextInput
+                    withAsterisk
+                    label="Tên đăng nhập mới"
                     placeholder="Nhập tên tài khoản"
                     icon={<IconUser size={14} />}
                     {...form.getInputProps('username')}
                   />
                   <TextInput
                     withAsterisk
-                    label="Mật khẩu"
+                    label="Mật khẩu mới"
                     type="password"
                     placeholder="Nhập mật khẩu"
                     icon={<IconLock size={14} />}
                     {...form.getInputProps('password')}
                   />
-                  <TextInput
-                    withAsterisk
-                    label="Xác nhận mật khẩu"
-                    type="password"
-                    placeholder="Nhập lại mật khẩu"
-                    icon={<IconLock size={14} />}
-                    {...form.getInputProps('password_2')}
-                  />
-
-                  <Button variant="filled" fullWidth mt="sm" type="submit">
+                  <Button variant="filled" loading={isLoading} fullWidth mt="sm" type="submit">
                     Đăng ký
                   </Button>
                 </Stack>

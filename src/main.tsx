@@ -14,16 +14,16 @@ import customTheme from './theme';
 function App() {
   return (
     <React.StrictMode>
-      <CookiesProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <CookiesProvider>
           <MantineProvider theme={customTheme}>
             <ModalsProvider>
               <Notifications position="top-right" />
               <AppRoutes />
             </ModalsProvider>
           </MantineProvider>
-        </BrowserRouter>
-      </CookiesProvider>
+        </CookiesProvider>
+      </BrowserRouter>
     </React.StrictMode>
   );
 }
