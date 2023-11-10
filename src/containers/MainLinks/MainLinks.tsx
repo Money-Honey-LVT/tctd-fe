@@ -1,5 +1,5 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
-import { IconAB2, IconBook2, IconReportAnalytics } from '@tabler/icons-react';
+import { IconAB2, IconBook2, IconReportAnalytics, IconSchool } from '@tabler/icons-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTER from '../../config/router';
@@ -57,6 +57,14 @@ const data = [
     to: ROUTER.NAV.RANKINGS.INDEX,
     managerOnly: false,
   },
+  {
+    icon: <IconSchool size="1rem" />,
+    color: 'teal',
+    label: 'Danh sách lớp',
+    to: ROUTER.NAV.CLASS.INDEX,
+    managerOnly: false,
+  },
+
   {
     icon: <IconAB2 size="1rem" />,
     color: 'violet',

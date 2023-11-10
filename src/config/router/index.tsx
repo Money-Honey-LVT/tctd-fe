@@ -10,6 +10,9 @@ const ROUTER = {
     STATISTICS: {
       INDEX: '/statistics',
     },
+    CLASS: {
+      INDEX: '/class',
+    },
     RANKINGS: {
       INDEX: '/rankings',
     },
