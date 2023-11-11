@@ -1,41 +1,68 @@
-const BASE_CRITERIAS = [
+export const BASE_CRITERIAS = [
   {
-    name: 'A. Thi đua nề nếp - học tập',
-    key: 'NN-HT',
+    label: 'A. Nề nếp',
+    value: 'NE_NEP',
     children: [
       {
-        name: 'Nề nếp',
-        children: [
-          { name: 'Chuyên cần' },
-          { name: 'Vệ sinh, nề nếp' },
-          { name: 'Đồng phục' },
-          { name: 'Chào cờ' },
-          { name: 'Giờ chủ nhiệm, bình tuần' },
-          { name: 'Các hoạt động tự quản và thể dục vui chơi' },
-          { name: 'Vi phạm' },
-          { name: 'Các hoạt động văn nghệ, thể dục thể thao  nghi thức Đội' },
-          { name: 'Các hoạt động của đội sao đỏ' },
-        ],
+        label: '1. Chuyên cần',
+        value: 'CHUYEN_CAN',
       },
       {
-        name: 'Học tập',
-        children: [{ name: 'Các hoạt động thi đua trong tuần' }],
+        label: '2. Vệ sinh, nề nếp',
+        value: 'VESINH_NENEP',
+      },
+      {
+        label: '3. Đồng phục',
+        value: 'DONG_PHUC',
+      },
+      {
+        label: '4. Chào cờ',
+        value: 'CHAO_CO',
+      },
+      {
+        label: '5. Giờ chủ nhiệm - bình tuần',
+        value: 'BINH_TUAN',
+      },
+      {
+        label: '6. Các hoạt động tự quản và thể dục vui chơi',
+        value: 'TU_QUAN',
+      },
+      {
+        label: '7. Vi phạm',
+        value: 'VI_PHAM',
+      },
+      {
+        label: '8. Các hoạt động văn nghệ, thể dục thể thao nghi thức Đội',
+        value: 'VAN_NGHE',
+      },
+      {
+        label: '9. Các hoạt động của đội sao đỏ',
+        value: 'SAO_DO',
       },
     ],
   },
   {
-    name: 'B.	Thi đua trong các phong trào thi đua và các hội thi',
-    key: 'PTTD-HT',
-    children: [],
+    label: 'B. Học tập',
+    value: 'HOC_TAP',
+    children: [
+      {
+        label: 'Các hoạt động thi đua trong tuần',
+        value: 'THI_DUA',
+      },
+    ],
   },
   {
-    name: 'C. Khen thưởng tập thể và cá nhân',
-    key: 'KTTTCN',
-    children: [],
-  },
-  {
-    name: 'D. Phân công trực nhật vệ sinh',
-    key: 'TN-VS',
-    children: [],
+    label: 'C. Khen thưởng tập thể và cá nhân',
+    value: 'KHEN_THUONG',
+    children: [
+      {
+        label: 'Khen thưởng cá nhân',
+        value: 'KHEN_THUONG_CA_NHAN',
+      },
+      {
+        label: 'Khen thưởng tập thể',
+        value: 'KHEN_THUONG_TAP_THE',
+      },
+    ],
   },
 ];
