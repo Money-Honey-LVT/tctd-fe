@@ -7,7 +7,7 @@ import CurrentClass from './CurrentClass';
 import ModalAddClass from './ModalAddClass';
 
 const Class = () => {
-  const { classes, loading } = useFetchClasses();
+  const { classes, loading, refetch } = useFetchClasses();
   const [currentClass, setCurrentClass] = useState<IClass>();
   const [newClassModalOpened, { close: closeNewClassModal, open: openNewClassModal }] = useDisclosure(false);
 
@@ -26,7 +26,7 @@ const Class = () => {
           </Grid.Col>
         </Grid>
       </Stack>
-      <ModalAddClass onClose={closeNewClassModal} opened={newClassModalOpened} />
+      <ModalAddClass refetch={refetch} onClose={closeNewClassModal} opened={newClassModalOpened} />
     </React.Fragment>
   );
 };

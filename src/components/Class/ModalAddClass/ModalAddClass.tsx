@@ -1,22 +1,22 @@
-import { Button, Flex, Grid, Group, Modal, NumberInput, Select, TextInput, Textarea } from '@mantine/core';
+import { Button, Flex, Group, Modal, NumberInput, TextInput, Textarea } from '@mantine/core';
 import { isNotEmpty, useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
 import { IconX } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HEADERS, baseURL } from '../../../config/constants/api';
-import ROUTER from '../../../config/router';
 
 interface IModalAddClassProps {
   onClose: () => void;
   opened: boolean;
+  refetch: () => void;
 }
 
 const ModalAddClass: React.FC<IModalAddClassProps> = (props) => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { onClose, opened } = props;
+  const { onClose, opened, refetch } = props;
 
   const initialValues = {
     name: '',
@@ -40,7 +40,7 @@ const ModalAddClass: React.FC<IModalAddClassProps> = (props) => {
         headers: HEADERS.authHeader,
         body: JSON.stringify(values),
       }).then((res) => res.json());
-      console.log(response);
+
       if (response.hasErrors || response.status !== 200) {
         notifications.show({
           title: 'Đã có lỗi xảy ra',
@@ -54,6 +54,8 @@ const ModalAddClass: React.FC<IModalAddClassProps> = (props) => {
       notifications.show({
         message: 'Tạo lớp mới thành công!',
       });
+
+      refetch();
     } catch (e) {
       notifications.show({
         message: 'Đã có lỗi xảy ra',
