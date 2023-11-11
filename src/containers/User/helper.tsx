@@ -48,7 +48,7 @@ export const useGetProfileInfo = () => {
           headers: HEADERS.authHeader,
         }).then((res) => res.json());
 
-        if (response.hasErrors) {
+        if (response.hasErrors || response.status !== 200) {
           notifications.show({
             title: 'Đã có lỗi xảy ra',
             message: response.errors[0],

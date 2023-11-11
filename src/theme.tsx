@@ -5,7 +5,6 @@ const customTheme: MantineThemeOverride = {
   components: {
     Notification: {
       defaultProps: {
-        autoClose: 1200,
         withCloseButton: true,
         title: 'Thông báo',
         color: 'green',

@@ -44,7 +44,7 @@ const SignUp = () => {
         body: JSON.stringify({ ...value, role: 'ROLE_ADMIN' }),
       }).then((res) => res.json());
 
-      if (response.hasErrors) {
+      if (response.hasErrors || response.status !== 200) {
         notifications.show({
           title: 'Đã có lỗi xảy ra',
           message: response.errors[0],

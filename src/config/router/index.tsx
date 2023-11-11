@@ -12,6 +12,7 @@ const ROUTER = {
     },
     CLASS: {
       INDEX: '/class',
+      DETAIL: '/class/:id',
     },
     RANKINGS: {
       INDEX: '/rankings',

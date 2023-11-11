@@ -8,6 +8,7 @@ const Login = React.lazy(() => import('./Login'));
 const SignUp = React.lazy(() => import('./SignUp'));
 const Home = React.lazy(() => import('../components/Home'));
 const Class = React.lazy(() => import('../components/Class'));
+const ClassDetail = React.lazy(() => import('../components/ClassDetail'));
 const Rankings = React.lazy(() => import('../components/Rankings'));
 const Reference = React.lazy(() => import('../components/Reference'));
 const Criterias = React.lazy(() => import('../components/Criterias'));
@@ -39,6 +40,7 @@ const AppRoutes: React.FC = () => {
         <Route path={ROUTER.HOME.INDEX} element={<Home />} />
         <Route path={ROUTER.NAV.STATISTICS.INDEX} element={<Statistics />} />
         <Route path={ROUTER.NAV.CLASS.INDEX} element={<Class />} />
+        <Route path={ROUTER.NAV.CLASS.DETAIL} element={<ClassDetail />} />
         <Route path={ROUTER.NAV.RANKINGS.INDEX} element={<Rankings />} />
         <Route path={ROUTER.NAV.REFERENCE.INDEX} element={<Reference />} />
         <Route path={ROUTER.NAV.CRITERIAS.INDEX} element={<Criterias />} />
