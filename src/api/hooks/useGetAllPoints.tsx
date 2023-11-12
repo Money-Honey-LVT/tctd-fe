@@ -14,7 +14,7 @@ export interface IPoint {
 }
 
 export const useGetAllPoints = () => {
-  const [points, setPoints] = useState<any[]>([]);
+  const [points, setPoints] = useState<IPoint[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchPoints = async () => {
