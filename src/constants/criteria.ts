@@ -80,7 +80,7 @@ export const criteriaMapping = {
   SAO_DO: 'Các hoạt động của đội sao đỏ',
   HOC_TAP: 'Học tập',
   THI_DUA: 'Các hoạt động thi đua trong tuần',
-  KHEN_THUONG: 'C. Khen thưởng tập thể và cá nhân',
+  KHEN_THUONG: 'Khen thưởng tập thể và cá nhân',
   KHEN_THUONG_CA_NHAN: 'Khen thưởng cá nhân',
   KHEN_THUONG_TAP_THE: 'Khen thưởng tập thể',
 };

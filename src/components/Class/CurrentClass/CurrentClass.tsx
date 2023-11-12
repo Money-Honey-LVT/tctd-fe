@@ -41,11 +41,11 @@ const CurrentClass: React.FC<ICurrentClassProps> = (props) => {
         <Group mt={'sm'} position="right">
           <Button leftIcon={<IconPlus size={rem(18)} />}> Thêm quá trình</Button>
           <Button variant="outline" leftIcon={<IconPencil size={rem(18)} />} onClick={openUpdateClassModal}>
-            Sửa thông tin
+            Sửa
           </Button>
-          <Button leftIcon={<IconTrash size={rem(18)} />} color="red" onClick={openDeleteClassModal}>
+          {/* <Button leftIcon={<IconTrash size={rem(18)} />} color="red" onClick={openDeleteClassModal}>
             Xoá
-          </Button>
+          </Button> */}
         </Group>
       </Card>
 

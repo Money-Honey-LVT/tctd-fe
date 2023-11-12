@@ -79,13 +79,13 @@ const data = [
     to: ROUTER.NAV.TIME.INDEX,
     managerOnly: false,
   },
-  {
-    icon: <IconBook2 size="1rem" />,
-    color: 'blue',
-    label: 'Tài liệu tiêu chí',
-    to: ROUTER.NAV.REFERENCE.INDEX,
-    managerOnly: false,
-  },
+  // {
+  //   icon: <IconBook2 size="1rem" />,
+  //   color: 'blue',
+  //   label: 'Tài liệu tiêu chí',
+  //   to: ROUTER.NAV.REFERENCE.INDEX,
+  //   managerOnly: false,
+  // },
 ];
 
 const MainLinks = () => {
