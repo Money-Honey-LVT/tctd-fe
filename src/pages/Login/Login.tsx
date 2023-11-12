@@ -56,7 +56,6 @@ const Login = () => {
       }
 
       localStorage.setItem('token', response.data);
-
       navigate(ROUTER.HOME.INDEX);
       notifications.show({
         message: 'Đăng nhập thành công!',

@@ -1,9 +1,9 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
 import { IconAB2, IconBook2, IconClock, IconReportAnalytics, IconSchool } from '@tabler/icons-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTER from '../../config/router';
-import { isManagerOnly } from '../../utils/helpers';
+import { getDecodedToken } from '../../utils/token';
 
 interface MainLinkProps {
   icon: React.ReactNode;
@@ -61,7 +61,7 @@ const data = [
     color: 'teal',
     label: 'Danh sách lớp',
     to: ROUTER.NAV.CLASS.INDEX,
-    managerOnly: !isManagerOnly,
+    managerOnly: true,
   },
 
   {
@@ -69,14 +69,14 @@ const data = [
     color: 'violet',
     label: ' Quản lý tiêu chí',
     to: ROUTER.NAV.CRITERIAS.INDEX,
-    managerOnly: !isManagerOnly,
+    managerOnly: true,
   },
   {
     icon: <IconClock size="1rem" />,
     color: 'gray',
     label: 'Quản lý khung thời gian',
     to: ROUTER.NAV.TIME.INDEX,
-    managerOnly: !isManagerOnly,
+    managerOnly: true,
   },
   // {
   //   icon: <IconBook2 size="1rem" />,
@@ -88,7 +88,8 @@ const data = [
 ];
 
 const MainLinks = () => {
-  if (!isManagerOnly) {
+  const isManager = getDecodedToken().role === 'ROLE_ADMIN';
+  if (!isManager) {
     const filterData = data.filter((link) => !link.managerOnly);
     const links = filterData.map((link) => <MainLink {...link} key={link.label} />);
     return <div>{links}</div>;
