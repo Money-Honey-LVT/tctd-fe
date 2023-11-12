@@ -1,5 +1,5 @@
 import { Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
-import { IconAB2, IconBook2, IconReportAnalytics, IconSchool } from '@tabler/icons-react';
+import { IconAB2, IconBook2, IconClock, IconReportAnalytics, IconSchool } from '@tabler/icons-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTER from '../../config/router';
@@ -70,6 +70,13 @@ const data = [
     color: 'violet',
     label: ' Quản lý tiêu chí',
     to: ROUTER.NAV.CRITERIAS.INDEX,
+    managerOnly: false,
+  },
+  {
+    icon: <IconClock size="1rem" />,
+    color: 'gray',
+    label: 'Quản lý khung thời gian',
+    to: ROUTER.NAV.TIME.INDEX,
     managerOnly: false,
   },
   {

@@ -66,3 +66,21 @@ export const BASE_CRITERIAS = [
     ],
   },
 ];
+
+export const criteriaMapping = {
+  NE_NEP: 'Nề nếp',
+  CHUYEN_CAN: 'Chuyên cần',
+  VESINH_NENEP: 'Vệ sinh, nề nếp',
+  DONG_PHUC: 'Đồng phục',
+  CHAO_CO: 'Chào cờ',
+  BINH_TUAN: 'Giờ chủ nhiệm - bình tuần',
+  TU_QUAN: 'Các hoạt động tự quản và thể dục vui chơi',
+  VI_PHAM: 'Vi phạm',
+  VAN_NGHE: 'Các hoạt động văn nghệ, thể dục thể thao nghi thức Đội',
+  SAO_DO: 'Các hoạt động của đội sao đỏ',
+  HOC_TAP: 'B. Học tập',
+  THI_DUA: 'Các hoạt động thi đua trong tuần',
+  KHEN_THUONG: 'C. Khen thưởng tập thể và cá nhân',
+  KHEN_THUONG_CA_NHAN: 'Khen thưởng cá nhân',
+  KHEN_THUONG_TAP_THE: 'Khen thưởng tập thể',
+};

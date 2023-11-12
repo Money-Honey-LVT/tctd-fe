@@ -1,5 +1,6 @@
-import { Button, Flex, Grid, Modal, Stack } from '@mantine/core';
+import { Affix, Button, Grid, Stack, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { IconPlus } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import { IClass, useFetchClasses } from '../../api/class';
 import ClasssesListTable from './ClasssesListTable';
@@ -15,9 +16,11 @@ const Class = () => {
   return (
     <React.Fragment>
       <Stack align="flex-start">
-        <Button fullWidth={false} onClick={openNewClassModal}>
-          Tạo lớp học mới
-        </Button>
+        <Affix position={{ bottom: rem(20), right: rem(20) }}>
+          <Button leftIcon={<IconPlus />} fullWidth={false} onClick={openNewClassModal}>
+            Tạo lớp học mới
+          </Button>
+        </Affix>
         <Grid w="100%" columns={24}>
           <Grid.Col lg={16} md={24}>
             <ClasssesListTable data={classes} setCurrentClass={setCurrentClass} />
