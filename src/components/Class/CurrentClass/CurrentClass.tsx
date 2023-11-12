@@ -1,9 +1,10 @@
-import { Button, Card, Group, Image, Text } from '@mantine/core';
+import { Button, Card, Group, Image, Text, rem } from '@mantine/core';
 import React from 'react';
 import { IClass } from '../../../api/class';
 import { useDisclosure } from '@mantine/hooks';
 import ModalEditClass from '../ModalEditClass';
 import ModalDeleteClass from '../ModalDeleteClass';
+import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 
 interface ICurrentClassProps {
   currentClass?: IClass;
@@ -37,10 +38,14 @@ const CurrentClass: React.FC<ICurrentClassProps> = (props) => {
           {description || '<Không có mô tả>'}
         </Text>
 
-        <Group mt={'sm'} position={'apart'}>
-          <Button>Thêm quá trình</Button>
-          <Button onClick={openUpdateClassModal}>Sửa thông tin</Button>
-          <Button onClick={openDeleteClassModal}>Xoá lớp</Button>
+        <Group mt={'sm'} position="right">
+          <Button leftIcon={<IconPlus size={rem(18)} />}> Thêm quá trình</Button>
+          <Button variant="outline" leftIcon={<IconPencil size={rem(18)} />} onClick={openUpdateClassModal}>
+            Sửa thông tin
+          </Button>
+          <Button leftIcon={<IconTrash size={rem(18)} />} color="red" onClick={openDeleteClassModal}>
+            Xoá
+          </Button>
         </Group>
       </Card>
 

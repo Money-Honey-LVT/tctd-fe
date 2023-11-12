@@ -14,7 +14,7 @@ const Criterias = () => {
     <React.Fragment>
       <Stack align="flex-start">
         <Affix position={{ bottom: rem(20), right: rem(20) }}>
-          <Button leftIcon={<IconPlus />} fullWidth={false} onClick={openNewCriteriaModal}>
+          <Button leftIcon={<IconPlus size={rem(18)} />} fullWidth={false} onClick={openNewCriteriaModal}>
             Tạo tiêu chí mới
           </Button>
         </Affix>

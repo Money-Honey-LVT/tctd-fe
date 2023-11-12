@@ -53,7 +53,7 @@ export default function AppLayout() {
                   <IconDatabase />
                 </Anchor>
               </Group>
-              <Button onClick={handleLogout} variant="subtle" color="red" leftIcon={<IconLogout size={20} />}>
+              <Button onClick={handleLogout} variant="subtle" color="red" leftIcon={<IconLogout />}>
                 Đăng xuất
               </Button>
             </Group>

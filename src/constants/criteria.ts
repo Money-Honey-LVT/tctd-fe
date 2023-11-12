@@ -78,7 +78,7 @@ export const criteriaMapping = {
   VI_PHAM: 'Vi phạm',
   VAN_NGHE: 'Các hoạt động văn nghệ, thể dục thể thao nghi thức Đội',
   SAO_DO: 'Các hoạt động của đội sao đỏ',
-  HOC_TAP: 'B. Học tập',
+  HOC_TAP: 'Học tập',
   THI_DUA: 'Các hoạt động thi đua trong tuần',
   KHEN_THUONG: 'C. Khen thưởng tập thể và cá nhân',
   KHEN_THUONG_CA_NHAN: 'Khen thưởng cá nhân',

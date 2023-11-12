@@ -25,7 +25,7 @@ const Time = () => {
     <React.Fragment>
       <Stack align="flex-start">
         <Affix position={{ bottom: rem(20), right: rem(20) }}>
-          <Button leftIcon={<IconPlus />} fullWidth={false} onClick={openNewTimeModal}>
+          <Button leftIcon={<IconPlus size={rem(18)} />} fullWidth={false} onClick={openNewTimeModal}>
             Tạo khung thời gian
           </Button>
         </Affix>
