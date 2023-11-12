@@ -1,11 +1,7 @@
-import { Group, Stack } from '@mantine/core';
+import Statistics from '../Statistics';
 
 const Home = () => {
-  return (
-    <Stack>
-      <Group position="center">Thống kê</Group>
-    </Stack>
-  );
+  return <Statistics />;
 };
 
 export default Home;
