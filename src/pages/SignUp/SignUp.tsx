@@ -41,7 +41,7 @@ const SignUp = () => {
       const response = await fetch(`${baseURL}/auth/register`, {
         method: 'POST',
         headers: HEADERS.header,
-        body: JSON.stringify({ ...value, role: 'ROLE_ADMIN' }),
+        body: JSON.stringify({ ...value, role: 'ROLE_GUEST' }),
       }).then((res) => res.json());
 
       if (response.hasErrors || response.status !== 200) {
