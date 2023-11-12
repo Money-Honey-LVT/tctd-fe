@@ -1,7 +1,6 @@
-import { Badge, Button, Card, Group, Image, Text } from '@mantine/core';
+import { Button, Card, Group, Image, Text } from '@mantine/core';
 import React from 'react';
-import { IClass, useFetchClasses } from '../../../api/class';
-import { useNavigate } from 'react-router-dom';
+import { IClass } from '../../../api/class';
 import { useDisclosure } from '@mantine/hooks';
 import ModalEditClass from '../ModalEditClass';
 import ModalDeleteClass from '../ModalDeleteClass';
