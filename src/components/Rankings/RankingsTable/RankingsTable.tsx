@@ -16,6 +16,7 @@ const RankingsTable: React.FC<IRankingsTableProps> = ({ data }) => {
       <td>{data.classPoint.name}</td>
       <td>{data.disciplinePoint}</td>
       <td>{data.studyPoint}</td>
+      <td>{data.studyPoint + data.disciplinePoint}</td>
       <td>{data.time.week.match(weekRegex)?.[1]}</td>
       <td>{data.time.month.match(monthRegex)?.[1]}</td>
       <td>{data.time.semester.match(semesterRegex)?.[1]}</td>
@@ -28,11 +29,12 @@ const RankingsTable: React.FC<IRankingsTableProps> = ({ data }) => {
         <thead>
           <tr>
             <th>Tên lớp</th>
-            <th style={{ minWidth: '120px' }}>Điểm nề nếp</th>
-            <th style={{ minWidth: '120px' }}>Điểm học tập</th>
-            <th style={{ minWidth: '120px' }}>Tuần thứ</th>
-            <th style={{ minWidth: '120px' }}>Tháng</th>
-            <th style={{ minWidth: '120px' }}>Học kỳ</th>
+            <th>Điểm nề nếp</th>
+            <th>Điểm học tập</th>
+            <th>Tổng điểm</th>
+            <th>Tuần thứ</th>
+            <th>Tháng</th>
+            <th>Học kỳ</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
