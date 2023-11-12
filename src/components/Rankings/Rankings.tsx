@@ -15,17 +15,29 @@ const Rankings = () => {
   }, [points]);
 
   const [selectedClass, setSelectedClass] = useState<string | null>();
+  const [selectedWeek, setSelectedWeek] = useState<number | ''>('');
+  const [selectedMonth, setSelectedMonth] = useState<number | ''>('');
+  const [selectedSemester, setSelectedSemester] = useState<number | ''>('');
 
   useEffect(() => {
     setFetchedData(
-      points.filter(({ classPoint: { name } }) => {
+      points.filter(({ classPoint: { name }, time: { week, month, semester } }) => {
         if (selectedClass !== null && selectedClass !== name) {
+          return false;
+        }
+        if (selectedWeek !== '' && `WEEK_${selectedWeek.toString()}` !== week) {
+          return false;
+        }
+        if (selectedMonth !== '' && `MONTH_${selectedMonth.toString()}` !== month) {
+          return false;
+        }
+        if (selectedSemester !== '' && `SEMESTER_${selectedSemester.toString()}` !== semester) {
           return false;
         }
         return true;
       })
     );
-  }, [selectedClass]);
+  }, [selectedClass, selectedWeek, selectedMonth, selectedSemester]);
 
   return (
     <Stack>
@@ -38,9 +50,30 @@ const Rankings = () => {
           clearable
           onChange={setSelectedClass}
         />
-        <NumberInput label="Tuần" max={35} min={1} placeholder="Nhập tuần (Từ tuần 1 đến 35)" />
-        <NumberInput label="Tháng" max={12} min={1} placeholder="Nhập tháng (Từ tháng 1 đến 12)" />
-        <NumberInput label="Kỳ học" min={1} max={2} placeholder="Nhập kỳ học (Kỳ 1 hay 2)" />
+        <NumberInput
+          disabled={selectedMonth !== '' || selectedSemester !== ''}
+          label="Tuần"
+          max={35}
+          min={1}
+          placeholder="Nhập tuần (Từ tuần 1 đến 35)"
+          onChange={setSelectedWeek}
+        />
+        <NumberInput
+          disabled={selectedWeek !== '' || selectedSemester !== ''}
+          label="Tháng"
+          max={12}
+          min={1}
+          placeholder="Nhập tháng (Từ tháng 1 đến 12)"
+          onChange={setSelectedMonth}
+        />
+        <NumberInput
+          disabled={selectedWeek !== '' || selectedMonth !== ''}
+          label="Kỳ học"
+          min={1}
+          max={2}
+          placeholder="Nhập kỳ học (Kỳ 1 hay 2)"
+          onChange={setSelectedSemester}
+        />
       </Group>
       <RankingsTable data={fetchedData} />
     </Stack>
