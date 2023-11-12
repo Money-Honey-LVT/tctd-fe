@@ -5,6 +5,7 @@ import { IClass, useFetchClasses } from '../../api/class';
 import ClasssesListTable from './ClasssesListTable';
 import CurrentClass from './CurrentClass';
 import ModalAddClass from './ModalAddClass';
+import ModalEditClass from './ModalEditClass';
 
 const Class = () => {
   const { classes, loading, refetch } = useFetchClasses();
@@ -22,7 +23,7 @@ const Class = () => {
             <ClasssesListTable data={classes} setCurrentClass={setCurrentClass} />
           </Grid.Col>
           <Grid.Col lg={8} md={24}>
-            <CurrentClass currentClass={currentClass || classes[0]} />
+            <CurrentClass currentClass={currentClass || classes[0]} refetch={refetch} />
           </Grid.Col>
         </Grid>
       </Stack>
