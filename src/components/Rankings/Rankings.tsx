@@ -26,7 +26,6 @@ const Rankings = () => {
   });
   const handleSubmitFilter = (values: typeof initialValues) => {
     console.log(values);
-
     setFilters(values);
   };
 
@@ -57,6 +56,7 @@ const Rankings = () => {
     setFetchedData(points);
   }, [points]);
 
+  console;
   return (
     <Stack>
       <form onReset={form.onReset} id="form-add-time" onSubmit={form.onSubmit(handleSubmitFilter)}>

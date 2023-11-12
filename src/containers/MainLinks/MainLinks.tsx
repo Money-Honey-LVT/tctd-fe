@@ -3,7 +3,7 @@ import { IconAB2, IconBook2, IconClock, IconReportAnalytics, IconSchool } from '
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTER from '../../config/router';
-// import { isManager } from '../../utils/helpers';
+import { isManagerOnly } from '../../utils/helpers';
 
 interface MainLinkProps {
   icon: React.ReactNode;
@@ -15,7 +15,7 @@ interface MainLinkProps {
 
 const MainLink = ({ icon, color, label, to, managerOnly }: MainLinkProps) => {
   const navigate = useNavigate();
-
+  console.log(isManagerOnly);
   return (
     <UnstyledButton
       onClick={() => navigate(to, { replace: true })}
@@ -62,7 +62,7 @@ const data = [
     color: 'teal',
     label: 'Danh sách lớp',
     to: ROUTER.NAV.CLASS.INDEX,
-    managerOnly: false,
+    managerOnly: !isManagerOnly,
   },
 
   {
@@ -70,14 +70,14 @@ const data = [
     color: 'violet',
     label: ' Quản lý tiêu chí',
     to: ROUTER.NAV.CRITERIAS.INDEX,
-    managerOnly: false,
+    managerOnly: !isManagerOnly,
   },
   {
     icon: <IconClock size="1rem" />,
     color: 'gray',
     label: 'Quản lý khung thời gian',
     to: ROUTER.NAV.TIME.INDEX,
-    managerOnly: false,
+    managerOnly: !isManagerOnly,
   },
   // {
   //   icon: <IconBook2 size="1rem" />,
@@ -89,7 +89,7 @@ const data = [
 ];
 
 const MainLinks = () => {
-  if (false) {
+  if (!isManagerOnly) {
     const filterData = data.filter((link) => !link.managerOnly);
     const links = filterData.map((link) => <MainLink {...link} key={link.label} />);
     return <div>{links}</div>;

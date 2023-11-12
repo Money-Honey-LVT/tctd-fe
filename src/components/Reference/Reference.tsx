@@ -1,5 +1,6 @@
 import { Box } from '@mantine/core';
 import { useEffect } from 'react';
+import withAdminAuthorization from '../../api/hoc/withAdminAuthorization';
 
 const Reference = () => {
   // useEffect(() => {
@@ -16,4 +17,4 @@ const Reference = () => {
   return <Box>Reference</Box>;
 };
 
-export default Reference;
+export default withAdminAuthorization(Reference);
