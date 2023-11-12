@@ -84,19 +84,19 @@ const ModalAddTime: React.FC<IModalAddTimeProps> = (props) => {
     <Modal centered size="lg" title="Tạo thêm khung thời gian mới" onClose={onClose} opened={opened}>
       <form onReset={form.onReset} id="form-add-time" onSubmit={form.onSubmit(handleSubmitAddTime)}>
         <Flex direction="column" gap="sm">
-          <TextInput
+          <NumberInput
             withAsterisk
             label="Tuần"
             placeholder="Nhập tuần (Từ tuần 1 đến 35)"
             {...form.getInputProps('week')}
           />
-          <TextInput
+          <NumberInput
             withAsterisk
             label="Tháng"
             placeholder="Nhập tháng (Từ tháng 1 đến 12)"
             {...form.getInputProps('month')}
           />
-          <TextInput
+          <NumberInput
             withAsterisk
             label="Kỳ học"
             placeholder="Nhập kỳ học (Kỳ 1 hay 2) "
