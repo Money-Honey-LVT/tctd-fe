@@ -15,7 +15,6 @@ interface MainLinkProps {
 
 const MainLink = ({ icon, color, label, to, managerOnly }: MainLinkProps) => {
   const navigate = useNavigate();
-  console.log(isManagerOnly);
   return (
     <UnstyledButton
       onClick={() => navigate(to, { replace: true })}
