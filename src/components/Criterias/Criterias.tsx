@@ -1,9 +1,10 @@
-import { Button, Grid, Stack } from '@mantine/core';
+import { Affix, Button, Stack, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { IconPlus } from '@tabler/icons-react';
 import React from 'react';
 import { useFetchCriteria } from '../../api/criteria';
-import ModalAddCriteria from './ModalAddCriteria/ModalAddCriteria';
 import CriteriaListTable from './CriteriaListTable';
+import ModalAddCriteria from './ModalAddCriteria/ModalAddCriteria';
 
 const Criterias = () => {
   const { criteria, loading, refetch } = useFetchCriteria();
@@ -12,9 +13,12 @@ const Criterias = () => {
   return (
     <React.Fragment>
       <Stack align="flex-start">
-        <Button fullWidth={false} onClick={openNewCriteriaModal}>
-          Tạo tiêu chí mới
-        </Button>
+        <Affix position={{ bottom: rem(20), right: rem(20) }}>
+          <Button leftIcon={<IconPlus />} fullWidth={false} onClick={openNewCriteriaModal}>
+            Tạo tiêu chí mới
+          </Button>
+        </Affix>
+
         <CriteriaListTable data={criteria} />
       </Stack>
       <ModalAddCriteria refetch={refetch} onClose={closeNewCriteriaModal} opened={newCriteriaModalOpened} />

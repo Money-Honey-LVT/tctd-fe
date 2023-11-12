@@ -1,4 +1,4 @@
-import { Card, ScrollArea, Table } from '@mantine/core';
+import { ScrollArea, Table } from '@mantine/core';
 import React from 'react';
 import { ICriteria } from '../../../api/criteria';
 import classes from './classes.module.css';
@@ -22,21 +22,19 @@ const CriteriaListTable: React.FC<ICriteriaListTable> = (props) => {
   ));
 
   return (
-    <Card withBorder>
-      <ScrollArea h={`calc(100vh - 128px - 4rem)`}>
-        <Table>
-          <thead>
-            <tr>
-              <th>Tên tiêu chí</th>
-              <th style={{ minWidth: '150px' }}>Số điểm cộng/trừ</th>
-              <th style={{ minWidth: '120px' }}>Danh mục</th>
-              <th style={{ minWidth: '120px' }}>Danh mục con</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </Table>
-      </ScrollArea>
-    </Card>
+    <ScrollArea h={`calc(100vh - 6rem)`}>
+      <Table highlightOnHover striped withColumnBorders>
+        <thead>
+          <tr>
+            <th>Tên tiêu chí</th>
+            <th style={{ minWidth: '150px' }}>Số điểm cộng/trừ</th>
+            <th style={{ minWidth: '120px' }}>Danh mục</th>
+            <th style={{ minWidth: '120px' }}>Danh mục con</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </Table>
+    </ScrollArea>
   );
 };
 

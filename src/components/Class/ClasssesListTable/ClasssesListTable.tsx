@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, ScrollArea, Table } from '@mantine/core';
+import { ScrollArea, Table } from '@mantine/core';
+import React from 'react';
 import { IClass } from '../../../api/class';
 import classes from './classes.module.css';
 
@@ -10,7 +10,6 @@ interface IClassesListTable {
 
 const ClasssesListTable: React.FC<IClassesListTable> = (props) => {
   const { data, setCurrentClass } = props;
-  const [scrolled, setScrolled] = useState(false);
 
   if (!data.length) return null;
 
@@ -22,19 +21,17 @@ const ClasssesListTable: React.FC<IClassesListTable> = (props) => {
   ));
 
   return (
-    <Card radius="md" withBorder>
-      <ScrollArea h={300} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
-        <Table>
-          <thead>
-            <tr>
-              <th>Tên lớp</th>
-              <th>Số học sinh</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </Table>
-      </ScrollArea>
-    </Card>
+    <ScrollArea h={`calc(100vh - 128px - 4rem)`}>
+      <Table highlightOnHover striped withColumnBorders>
+        <thead>
+          <tr>
+            <th>Tên lớp</th>
+            <th>Số học sinh</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </Table>
+    </ScrollArea>
   );
 };
 

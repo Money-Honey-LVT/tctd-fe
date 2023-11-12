@@ -7,7 +7,7 @@
 
 thead {
   position: sticky;
-  top: 0;
+  top: 0px;
   background-color: #fff;
   transition: box-shadow 150ms ease;
 

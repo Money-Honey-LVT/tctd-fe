@@ -13,8 +13,6 @@ interface IModalAddClassProps {
 }
 
 const ModalAddClass: React.FC<IModalAddClassProps> = (props) => {
-  const navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { onClose, opened, refetch } = props;
 

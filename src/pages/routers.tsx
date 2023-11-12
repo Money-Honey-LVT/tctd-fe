@@ -7,6 +7,7 @@ import AppLayout from '../containers/AppLayout';
 const Login = React.lazy(() => import('./Login'));
 const SignUp = React.lazy(() => import('./SignUp'));
 const Home = React.lazy(() => import('../components/Home'));
+const Time = React.lazy(() => import('../components/Time'));
 const Class = React.lazy(() => import('../components/Class'));
 const ClassDetail = React.lazy(() => import('../components/ClassDetail'));
 const Rankings = React.lazy(() => import('../components/Rankings'));
@@ -44,6 +45,7 @@ const AppRoutes: React.FC = () => {
         <Route path={ROUTER.NAV.RANKINGS.INDEX} element={<Rankings />} />
         <Route path={ROUTER.NAV.REFERENCE.INDEX} element={<Reference />} />
         <Route path={ROUTER.NAV.CRITERIAS.INDEX} element={<Criterias />} />
+        <Route path={ROUTER.NAV.TIME.INDEX} element={<Time />} />
         <Route path="*" element={<_404NotFound />} />
       </Route>
     </Routes>

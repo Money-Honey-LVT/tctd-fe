@@ -23,6 +23,9 @@ const ROUTER = {
     CRITERIAS: {
       INDEX: '/criterias',
     },
+    TIME: {
+      INDEX: '/time',
+    },
   },
 };
 
