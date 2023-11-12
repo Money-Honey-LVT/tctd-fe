@@ -6,6 +6,7 @@ import { useFetchTimes } from '../../api/time';
 import { monthRegex, semesterRegex, weekRegex } from '../../constants/regex';
 import ModalAddTime from './ModalAddTime';
 import classes from './classes.module.css';
+import withAdminAuthorization from '../../api/hoc/withAdminAuthorization';
 
 const Time = () => {
   const { loading, refetch, times } = useFetchTimes();
@@ -47,4 +48,4 @@ const Time = () => {
   );
 };
 
-export default Time;
+export default withAdminAuthorization(Time);

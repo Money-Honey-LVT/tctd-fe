@@ -7,6 +7,7 @@ import ClasssesListTable from './ClasssesListTable';
 import CurrentClass from './CurrentClass';
 import ModalAddClass from './ModalAddClass';
 import ModalEditClass from './ModalEditClass';
+import withAdminAuthorization from '../../api/hoc/withAdminAuthorization';
 
 const Class = () => {
   const { classes, loading, refetch } = useFetchClasses();
@@ -35,4 +36,4 @@ const Class = () => {
   );
 };
 
-export default Class;
+export default withAdminAuthorization(Class);

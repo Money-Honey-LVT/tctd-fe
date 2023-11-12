@@ -5,6 +5,7 @@ import React from 'react';
 import { useFetchCriteria } from '../../api/criteria';
 import CriteriaListTable from './CriteriaListTable';
 import ModalAddCriteria from './ModalAddCriteria/ModalAddCriteria';
+import withAdminAuthorization from '../../api/hoc/withAdminAuthorization';
 
 const Criterias = () => {
   const { criteria, loading, refetch } = useFetchCriteria();
@@ -26,4 +27,4 @@ const Criterias = () => {
   );
 };
 
-export default Criterias;
+export default withAdminAuthorization(Criterias);
