@@ -1,17 +1,18 @@
 import { Affix, Button, Stack, Table, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { IconPlus } from '@tabler/icons-react';
 import React from 'react';
 import { useFetchTimes } from '../../api/time';
 import { monthRegex, semesterRegex, weekRegex } from '../../constants/regex';
 import ModalAddTime from './ModalAddTime';
-import { IconPlus } from '@tabler/icons-react';
+import classes from './classes.module.css';
 
 const Time = () => {
   const { loading, refetch, times } = useFetchTimes();
   const [newTimeModalOpened, { close: closeNewTimeModal, open: openNewTimeModal }] = useDisclosure(false);
 
   const rows = times.map((time) => (
-    <tr key={time.start}>
+    <tr className={classes.tr} key={time.start}>
       <td>{time.week.match(weekRegex)?.[1]}</td>
       <td>{time.month.match(monthRegex)?.[1]}</td>
       <td>{time.semester.match(semesterRegex)?.[1]}</td>
@@ -28,8 +29,7 @@ const Time = () => {
             Tạo khung thời gian
           </Button>
         </Affix>
-
-        <Table highlightOnHover striped withColumnBorders>
+        <Table w="100%" highlightOnHover striped withColumnBorders>
           <thead>
             <tr>
               <th>Tuần</th>
