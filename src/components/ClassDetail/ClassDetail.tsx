@@ -8,6 +8,7 @@ import { weekRegex } from '../../constants/regex';
 import classes from './classes.module.css';
 import ModalAddProcess from './ModalAddProcess';
 import { useDisclosure } from '@mantine/hooks';
+import { useGetClassById } from '../../api/class';
 
 const PRIMARY_COL_HEIGHT = 'calc(100vh - 76px - 16px)';
 const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - 0.5rem)`;
@@ -18,6 +19,7 @@ const ClassDetail = () => {
   if (!id) return null;
 
   const { loading, processes, refetch } = useGetAllProcessByClass(id);
+  const { fetchedClass } = useGetClassById(id);
   const [tableData, setTableData] = useState<IProcess[]>(processes);
   const [selectedWeek, setSelectedWeek] = useState<number | ''>('');
   const [openedAddProcessModal, { close: closeAddProcessModal, open: openAddProcessModal }] = useDisclosure();
@@ -45,9 +47,11 @@ const ClassDetail = () => {
     );
   }, [selectedWeek]);
 
+  if (!fetchedClass) return null;
+
   return (
     <>
-      <Grid>
+      <Grid gutter="xl">
         <Grid.Col span={8}>
           <Stack>
             <Group align="flex-end" position="apart">
@@ -82,12 +86,12 @@ const ClassDetail = () => {
               </ThemeIcon>
             </Group>
 
-            <Stack spacing="xs">
+            <Stack align="center" spacing="xs">
               <Text ta="center" fw={700} className={classes.title}>
-                Swimming challenge
+                Lớp {fetchedClass.name} - Sĩ số: {fetchedClass.total} học sinh
               </Text>
-              <Text c="dimmed" ta="center" fz="sm">
-                32 km / week
+              <Text c="dimmed" ta="center" fz="sm" w="80%">
+                {fetchedClass.description}
               </Text>
             </Stack>
 

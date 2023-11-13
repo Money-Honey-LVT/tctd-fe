@@ -53,3 +53,47 @@ export const useFetchClasses = () => {
 
   return { classes, loading, refetch };
 };
+
+export const useGetClassById = (id: string) => {
+  const [fetchedClass, setFetchedClass] = useState<IClass>();
+  const [loading, setLoading] = useState(true);
+
+  const fetchProcesses = async () => {
+    try {
+      const response = await fetch(`${baseURL}/classes/${id}`, {
+        method: 'GET',
+        headers: HEADERS.authHeader,
+      }).then((res) => res.json());
+
+      if (response.hasErrors || response.status !== 200) {
+        notifications.show({
+          title: 'Đã có lỗi xảy ra',
+          message: response.errors[0],
+          color: 'red',
+          icon: <IconX />,
+        });
+        return;
+      }
+      setFetchedClass(response?.data);
+    } catch (e) {
+      notifications.show({
+        message: 'Đã có lỗi xảy ra',
+        color: 'red',
+        icon: <IconX />,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProcesses();
+  }, []);
+
+  const refetch = () => {
+    setLoading(true);
+    fetchProcesses();
+  };
+
+  return { fetchedClass, loading, refetch };
+};
