@@ -4,6 +4,7 @@ import { notifications } from '@mantine/notifications';
 import { IconX } from '@tabler/icons-react';
 
 export interface ITime {
+  id: string;
   start: string;
   end: string;
   week: string;

@@ -1,25 +1,27 @@
-import { useEffect, useState } from 'react';
-import { HEADERS, baseURL } from '../config/constants/api';
 import { notifications } from '@mantine/notifications';
 import { IconX } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { HEADERS, baseURL } from '../../config/constants/api';
+import { ICriteria } from '../criteria';
+import { ITime } from '../time';
+import { IClass } from '../class';
 
-export interface ICriteria {
-  id: string;
-  name: string;
-  description: string;
-  isCountable: boolean;
+export interface IProcess {
+  id: number;
+  criteria: ICriteria;
+  time: ITime;
+  classProcess: IClass;
   points: number;
-  type: string;
-  subType: string;
+  description: string;
 }
 
-export const useFetchCriteria = () => {
-  const [criteria, setCriteria] = useState<ICriteria[]>([]);
+export const useGetAllProcessByClass = (id: string) => {
+  const [processes, setProcesses] = useState<IProcess[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchCriteria = async () => {
+  const fetchProcesses = async () => {
     try {
-      const response = await fetch(`${baseURL}/criteria`, {
+      const response = await fetch(`${baseURL}/processes/${id}`, {
         method: 'GET',
         headers: HEADERS.authHeader,
       }).then((res) => res.json());
@@ -33,7 +35,7 @@ export const useFetchCriteria = () => {
         });
         return;
       }
-      setCriteria(response?.data);
+      setProcesses(response?.data);
     } catch (e) {
       notifications.show({
         message: 'Đã có lỗi xảy ra',
@@ -46,13 +48,13 @@ export const useFetchCriteria = () => {
   };
 
   useEffect(() => {
-    fetchCriteria();
+    fetchProcesses();
   }, []);
 
   const refetch = () => {
     setLoading(true);
-    fetchCriteria();
+    fetchProcesses();
   };
 
-  return { criteria, loading, refetch };
+  return { processes, loading, refetch };
 };

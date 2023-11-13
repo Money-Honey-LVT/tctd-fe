@@ -4,7 +4,8 @@ import { IClass } from '../../../api/class';
 import { useDisclosure } from '@mantine/hooks';
 import ModalEditClass from '../ModalEditClass';
 import ModalDeleteClass from '../ModalDeleteClass';
-import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconArrowLoopRight2, IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 
 interface ICurrentClassProps {
   currentClass?: IClass;
@@ -15,9 +16,16 @@ const CurrentClass: React.FC<ICurrentClassProps> = (props) => {
   const { currentClass, refetch } = props;
   const [updateClassModalOpened, { close: closeUpdateClassModal, open: openUpdateClassModal }] = useDisclosure(false);
   const [deleteClassModalOpened, { close: closeDeleteClassModal, open: openDeleteClassModal }] = useDisclosure(false);
+
+  const navigate = useNavigate();
+
   if (!currentClass) return null;
 
   const { description, name, total } = currentClass;
+
+  const handleDetailClick = () => {
+    navigate(`/class/${currentClass.id}`);
+  };
 
   return (
     <React.Fragment>
@@ -39,7 +47,9 @@ const CurrentClass: React.FC<ICurrentClassProps> = (props) => {
         </Text>
 
         <Group mt={'sm'} position="right">
-          <Button leftIcon={<IconPlus size={rem(18)} />}> Thêm quá trình</Button>
+          <Button onClick={handleDetailClick} leftIcon={<IconArrowLoopRight2 size={rem(18)} />}>
+            Chi tiết
+          </Button>
           <Button variant="outline" leftIcon={<IconPencil size={rem(18)} />} onClick={openUpdateClassModal}>
             Sửa
           </Button>
