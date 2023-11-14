@@ -8,13 +8,13 @@ const Statistics = () => {
   return (
     <React.Fragment>
       <Grid mt="xl">
-        <Grid.Col span={6}>
+        <Grid.Col span={5}>
           <Stack spacing={20}>
             <TotalClasses />
             <TopFiveThisWeek />
           </Stack>
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={7}>
           <YearlyRankings />
         </Grid.Col>
       </Grid>

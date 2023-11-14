@@ -1,23 +1,29 @@
 import { Table } from '@mantine/core';
-import React from 'react';
+import dayjs from 'dayjs';
+import { useGetAllPoints } from '../../../api/hooks/useGetAllPoints';
 import { getStylesByIndex, ths } from './helper';
 
 const TopFiveThisWeek = () => {
-  const elements = [
-    { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
-    { position: 7, mass: 14.007, symbol: 'N', name: 'Nitrogen' },
-    { position: 39, mass: 88.906, symbol: 'Y', name: 'Yttrium' },
-    { position: 56, mass: 137.33, symbol: 'Ba', name: 'Barium' },
-    { position: 58, mass: 140.12, symbol: 'Ce', name: 'Cerium' },
-  ];
+  const { points } = useGetAllPoints();
+  const lastWeek = dayjs().subtract(7, 'day').format('YYYY-MM-DD');
+  const rankings = points
+    .filter((point) => dayjs(point.time.start).diff(lastWeek) < 0 && dayjs(point.time.end).diff(lastWeek) > 0)
+    .sort((a, b) => b.disciplinePoint + b.studyPoint - (a.disciplinePoint + a.studyPoint))
+    .map(({ classPoint, disciplinePoint, studyPoint }) => ({
+      studyPoint,
+      disciplinePoint,
+      name: classPoint.name,
+      totalPoint: studyPoint + disciplinePoint,
+    }))
+    .slice(0, 5);
 
-  const rows = elements.map((element, index) => (
-    <tr style={getStylesByIndex(index)} key={element.name}>
+  const rows = rankings.map((ranking, index) => (
+    <tr style={getStylesByIndex(index)} key={ranking.name}>
       <td>{index + 1}</td>
-      <td>{element.position}</td>
-      <td>{element.name}</td>
-      <td>{element.symbol}</td>
-      <td>{element.mass}</td>
+      <td>{ranking.name}</td>
+      <td>{ranking.disciplinePoint}</td>
+      <td>{ranking.studyPoint}</td>
+      <td>{ranking.totalPoint}</td>
     </tr>
   ));
 
