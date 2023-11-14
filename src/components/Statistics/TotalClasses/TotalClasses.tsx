@@ -41,7 +41,7 @@ function TotalClasses() {
   ));
 
   return (
-    <Paper withBorder p="md" radius="md">
+    <Paper withBorder p="md" radius={0}>
       <Stack spacing="lg">
         <Box>
           <Group style={{ justifyContent: 'space-between' }}>

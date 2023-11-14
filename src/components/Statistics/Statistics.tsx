@@ -1,19 +1,24 @@
+import { Grid, Stack, rem } from '@mantine/core';
 import React, { memo } from 'react';
+import TopFiveThisWeek from './TopFiveThisWeek';
 import TotalClasses from './TotalClasses/TotalClasses';
-import { Center, Grid, Text, Title } from '@mantine/core';
+import YearlyRankings from './YearlyRankings';
 
 const Statistics = () => {
   return (
-    <>
-      <Grid justify="center" mt="xl">
+    <React.Fragment>
+      <Grid mt="xl">
         <Grid.Col span={6}>
-          <TotalClasses />
+          <Stack spacing={20}>
+            <TotalClasses />
+            <TopFiveThisWeek />
+          </Stack>
         </Grid.Col>
-        {/* <Grid.Col span={6}>
-        <TotalClasses />
-      </Grid.Col> */}
+        <Grid.Col span={6}>
+          <YearlyRankings />
+        </Grid.Col>
       </Grid>
-    </>
+    </React.Fragment>
   );
 };
 
