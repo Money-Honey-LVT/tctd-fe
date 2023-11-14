@@ -7,16 +7,16 @@ import YearlyRankings from './YearlyRankings';
 const Statistics = () => {
   return (
     <React.Fragment>
-      <Grid mt="xl">
-        <Grid.Col span={5}>
+      <Grid justify="center" mt="xl">
+        <Grid.Col span={7}>
           <Stack spacing={20}>
             <TotalClasses />
             <TopFiveThisWeek />
           </Stack>
         </Grid.Col>
-        <Grid.Col span={7}>
+        {/* <Grid.Col span={7}>
           <YearlyRankings />
-        </Grid.Col>
+        </Grid.Col> */}
       </Grid>
     </React.Fragment>
   );

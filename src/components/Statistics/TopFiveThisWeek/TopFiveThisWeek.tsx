@@ -29,9 +29,7 @@ const TopFiveThisWeek = () => {
 
   return (
     <Table verticalSpacing="xs" withBorder withColumnBorders captionSide="bottom">
-      <caption style={{ captionSide: 'top', marginBottom: '12px' }}>
-        Top 5 lớp xuất sắc nhất tuần vừa qua (Tuần 1)
-      </caption>
+      <caption style={{ captionSide: 'top', marginBottom: '12px' }}>Top 5 lớp xuất sắc nhất tuần vừa qua</caption>
       <thead>{ths}</thead>
       <tbody>{rows}</tbody>
     </Table>
