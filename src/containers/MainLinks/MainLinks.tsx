@@ -57,6 +57,13 @@ const data = [
     managerOnly: false,
   },
   {
+    icon: <IconReportAnalytics size="1rem" />,
+    color: 'blue',
+    label: 'Xếp hạng theo tháng',
+    to: ROUTER.NAV.MONTHLY_RANK.INDEX,
+    managerOnly: false,
+  },
+  {
     icon: <IconSchool size="1rem" />,
     color: 'teal',
     label: 'Danh sách lớp',

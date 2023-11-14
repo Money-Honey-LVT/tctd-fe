@@ -26,6 +26,9 @@ const ROUTER = {
     TIME: {
       INDEX: '/time',
     },
+    MONTHLY_RANK: {
+      INDEX: '/monthly-rank',
+    },
   },
 };
 
