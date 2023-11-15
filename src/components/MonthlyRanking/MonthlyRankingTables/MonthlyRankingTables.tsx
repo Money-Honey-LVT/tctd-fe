@@ -4,7 +4,6 @@ import { Group, rem, ScrollArea, Table } from '@mantine/core';
 import classes from './classes.module.css';
 import { monthRegex } from '../../../constants/regex';
 import { IconArrowsUpDown } from '@tabler/icons-react';
-import * as dgram from 'dgram';
 
 interface Props {
   data: IMonthlyRank[];
@@ -27,7 +26,7 @@ const MonthlyRankingTables: React.FC<Props> = ({ data }) => {
   }, [rankSortStatus, data]);
 
   const rows = sortedData.map((rank, index) => (
-    <tr className={classes.tr}>
+    <tr className={classes.tr} key={index}>
       <td>{rank.rank}</td>
       <td>{rank.className}</td>
       <td>{rank.points}</td>
