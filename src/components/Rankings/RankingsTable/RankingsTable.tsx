@@ -30,11 +30,17 @@ const RankingsTable: React.FC<IRankingsTableProps> = ({ data }) => {
     if (sortStatusTotalPoint !== '') {
       switch (sortStatusTotalPoint) {
         case 'asc':
-          const sortedDataAsc = sortBy(data, (point) => point.disciplinePoint + point.studyPoint);
+          const sortedDataAsc = sortBy(
+            data,
+            (point) => point.disciplinePoint + point.studyPoint + point.competePoint + point.otherPoint
+          );
           setSortedData(sortedDataAsc);
           break;
         case 'desc':
-          const sortedDataDesc = sortBy(data, (point) => point.disciplinePoint + point.studyPoint).reverse();
+          const sortedDataDesc = sortBy(
+            data,
+            (point) => point.disciplinePoint + point.studyPoint + point.competePoint + point.otherPoint
+          ).reverse();
           setSortedData(sortedDataDesc);
           break;
       }
@@ -60,7 +66,9 @@ const RankingsTable: React.FC<IRankingsTableProps> = ({ data }) => {
       <td>{data.classPoint.name}</td>
       <td>{data.disciplinePoint}</td>
       <td>{data.studyPoint}</td>
-      <td>{data.studyPoint + data.disciplinePoint}</td>
+      <td>{data.competePoint}</td>
+      <td>{data.otherPoint}</td>
+      <td>{data.studyPoint + data.disciplinePoint + data.competePoint + data.otherPoint}</td>
       <td>{data.time.week.match(weekRegex)?.[1]}</td>
       <td>{data.time.month.match(monthRegex)?.[1]}</td>
       <td>{data.time.semester.match(semesterRegex)?.[1]}</td>
@@ -79,6 +87,8 @@ const RankingsTable: React.FC<IRankingsTableProps> = ({ data }) => {
             </th>
             <th>Điểm nề nếp</th>
             <th>Điểm học tập</th>
+            <th>Điểm thi đua</th>
+            <th>Điểm khen thưởng</th>
             <th>
               <Group position={'apart'}>
                 Tổng điểm

@@ -14,6 +14,7 @@ const Rankings = React.lazy(() => import('../components/Rankings'));
 const Reference = React.lazy(() => import('../components/Reference'));
 const Criterias = React.lazy(() => import('../components/Criterias'));
 const Statistics = React.lazy(() => import('../components/Statistics'));
+const MonthlyRanking = React.lazy(() => import('../components/MonthlyRanking'));
 const _404NotFound = React.lazy(() => import('../components/common/_404NotFound'));
 const _403Forbidden = React.lazy(() => import('../components/common/_403Forbidden'));
 
@@ -47,6 +48,7 @@ const AppRoutes: React.FC = () => {
         <Route path={ROUTER.NAV.REFERENCE.INDEX} element={<Reference />} />
         <Route path={ROUTER.NAV.CRITERIAS.INDEX} element={<Criterias />} />
         <Route path={ROUTER.NAV.TIME.INDEX} element={<Time />} />
+        <Route path={ROUTER.NAV.MONTHLY_RANK.INDEX} element={<MonthlyRanking />} />
         <Route path="*" element={<_404NotFound />} />
         <Route path="/unauthorized" element={<_403Forbidden />} />
       </Route>

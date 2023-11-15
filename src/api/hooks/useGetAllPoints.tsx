@@ -9,6 +9,8 @@ export interface IPoint {
   id: number;
   studyPoint: number;
   disciplinePoint: number;
+  competePoint: number;
+  otherPoint: number;
   classPoint: IClass;
   time: ITime;
 }
