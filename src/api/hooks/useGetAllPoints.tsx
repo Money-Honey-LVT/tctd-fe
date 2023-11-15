@@ -6,7 +6,7 @@ import { IClass } from '../class';
 import { ITime } from '../time';
 
 export interface IPoint {
-  id: number;
+  id: string;
   studyPoint: number;
   disciplinePoint: number;
   competePoint: number;

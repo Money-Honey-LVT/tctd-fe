@@ -1,5 +1,5 @@
 import { Button, Grid, Group, NumberInput, Paper, Stack, Table, Text, ThemeIcon, rem } from '@mantine/core';
-import { IconPlus, IconSchool } from '@tabler/icons-react';
+import { IconPlus, IconSchool, IconX } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import withAdminAuthorization from '../../api/hoc/withAdminAuthorization';
@@ -9,6 +9,8 @@ import classes from './classes.module.css';
 import ModalAddProcess from './ModalAddProcess';
 import { useDisclosure } from '@mantine/hooks';
 import { useGetClassById } from '../../api/class';
+import { HEADERS, baseURL } from '../../config/constants/api';
+import { notifications } from '@mantine/notifications';
 
 const PRIMARY_COL_HEIGHT = 'calc(100vh - 76px - 16px)';
 const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - 0.5rem)`;
@@ -28,11 +30,46 @@ const ClassDetail = () => {
     setTableData(processes);
   }, [processes]);
 
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(`${baseURL}/processes/${id}`, {
+        method: 'POST',
+        headers: HEADERS.authHeader,
+      }).then((res) => res.json());
+
+      if (response.hasErrors || response.status !== 200) {
+        notifications.show({
+          title: 'Đã có lỗi xảy ra',
+          message: response.errors[0],
+          color: 'red',
+          icon: <IconX />,
+        });
+        return;
+      }
+      notifications.show({
+        message: 'Xoá thành công!',
+      });
+      refetch();
+    } catch (e) {
+      notifications.show({
+        message: 'Đã có lỗi xảy ra',
+        color: 'red',
+        icon: <IconX />,
+      });
+    }
+  };
+
   const rows = tableData.map((process, idx) => (
     <tr key={`${process.description}-${idx}`}>
-      <td>{process.description}</td>
-      <td>{process.points}</td>
       <td>{process.time.week.match(weekRegex)?.[1]}</td>
+      <td>{process.criteria.name}</td>
+      <td>{process.points}</td>
+      <td>{process.description}</td>
+      <td>
+        <Button onClick={() => handleDelete(process.id)} compact color="red">
+          Xoá
+        </Button>
+      </td>
     </tr>
   ));
 
@@ -64,18 +101,18 @@ const ClassDetail = () => {
               />
             </Group>
 
-            {/* <ScrollArea h={PRIMARY_COL_HEIGHT}> */}
             <Table withBorder highlightOnHover striped withColumnBorders>
               <thead>
                 <tr>
+                  <th style={{ minWidth: '120px' }}>Tuần</th>
                   <th>Vi phạm/Khen thưởng</th>
                   <th style={{ minWidth: '200px' }}>Tổng điểm cộng/trừ</th>
-                  <th style={{ minWidth: '120px' }}>Tuần</th>
+                  <th>Ghi chú</th>
+                  <th>Hành động</th>
                 </tr>
               </thead>
               <tbody>{rows}</tbody>
             </Table>
-            {/* </ScrollArea> */}
           </Stack>
         </Grid.Col>
         <Grid.Col mt={50} span={4}>

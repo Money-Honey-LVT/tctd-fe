@@ -29,6 +29,7 @@ const ModalAddProcess: React.FC<IModalAddProcessProps> = (props) => {
     criteriaId: '',
     week: '',
     times: 1,
+    description: '',
   };
 
   const form = useForm({
@@ -51,7 +52,7 @@ const ModalAddProcess: React.FC<IModalAddProcessProps> = (props) => {
           criteriaList: [
             {
               criteriaId: values.criteriaId,
-              description: foundcrit?.name || '',
+              description: values.description,
               points: totalPoints,
             },
           ],
@@ -112,6 +113,12 @@ const ModalAddProcess: React.FC<IModalAddProcessProps> = (props) => {
             label="Tổng số điểm cộng/trừ theo tiêu chí"
             disabled
             value={(criteria.find((cri) => cri.id === form.values.criteriaId)?.points || 0) * form.values.times}
+          />
+          <TextInput
+            withAsterisk
+            label="Ghi chú"
+            placeholder="Cụ thể học sinh, ngày vi phạm"
+            {...form.getInputProps('description')}
           />
           <Group mt="sm" position="right">
             <Button

@@ -7,7 +7,7 @@ import { ITime } from '../time';
 import { IClass } from '../class';
 
 export interface IProcess {
-  id: number;
+  id: string;
   criteria: ICriteria;
   time: ITime;
   classProcess: IClass;

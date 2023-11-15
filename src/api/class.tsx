@@ -4,7 +4,7 @@ import { notifications } from '@mantine/notifications';
 import { IconX } from '@tabler/icons-react';
 
 export interface IClass {
-  id: number;
+  id: string;
   name: string;
   description?: string;
   total: number;
