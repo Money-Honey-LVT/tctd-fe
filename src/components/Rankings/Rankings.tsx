@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { useFetchClasses } from '../../api/class';
 import { IPoint, useGetAllPoints } from '../../api/hooks/useGetAllPoints';
 import RankingsTable from './RankingsTable/RankingsTable';
+import { monthRegex, weekRegex } from '../../constants/regex';
 
 const Rankings = () => {
   const { points } = useGetAllPoints();
   const { classes } = useFetchClasses();
 
   const [fetchedData, setFetchedData] = useState<IPoint[]>(points);
-
+  const [filterData, setFilterData] = useState<IPoint[]>(points);
   useEffect(() => {
     setFetchedData(points);
   }, [points]);
@@ -22,16 +23,16 @@ const Rankings = () => {
   useEffect(() => {
     setFetchedData(
       points.filter(({ classPoint: { name }, time: { week, month, semester } }) => {
-        if (selectedClass !== null && selectedClass !== name) {
+        if (selectedWeek !== '' && week.match(weekRegex)?.[1] !== selectedWeek.toString()) {
           return false;
         }
-        if (selectedWeek !== '' && `WEEK_${selectedWeek.toString()}` !== week) {
-          return false;
-        }
-        if (selectedMonth !== '' && `MONTH_${selectedMonth.toString()}` !== month) {
+        if (selectedMonth !== '' && month.match(monthRegex)?.[1] !== selectedMonth.toString()) {
           return false;
         }
         if (selectedSemester !== '' && `SEMESTER_${selectedSemester.toString()}` !== semester) {
+          return false;
+        }
+        if (selectedClass && selectedClass !== name) {
           return false;
         }
         return true;
